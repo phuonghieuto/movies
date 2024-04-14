@@ -1,14 +1,33 @@
 package com.phuonghieuto.movies.controller;
 
+import com.phuonghieuto.movies.entity.Movie;
+import com.phuonghieuto.movies.service.MovieService;
+import lombok.AllArgsConstructor;
+import org.bson.types.ObjectId;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.net.http.HttpResponse;
+import java.util.List;
+import java.util.Optional;
+
+@AllArgsConstructor
 @RestController
 @RequestMapping("/api/v1/movies")
 public class MovieController {
+
+    private MovieService movieService;
     @GetMapping
-    public String allMovies() {
-        return "All movies";
+    public ResponseEntity<List<Movie>> getAllMovies() {
+        return new ResponseEntity<>(movieService.getAllMovies(), HttpStatus.OK);
+    }
+
+    @GetMapping("/{imdbId}")
+    public ResponseEntity<Optional<Movie>> getMovieById(@PathVariable String imdbId) {
+        return new ResponseEntity<>(movieService.getMovie(imdbId), HttpStatus.OK);
     }
 }
