@@ -3,8 +3,6 @@ package com.phuonghieuto.movies.service;
 import com.phuonghieuto.movies.entity.Movie;
 import com.phuonghieuto.movies.repository.MovieRepository;
 import lombok.AllArgsConstructor;
-import org.bson.types.ObjectId;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
